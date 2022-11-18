@@ -1,35 +1,60 @@
 import axios from "axios"
 
-import { 
-    CREATE_ORDER_REQUEST, 
-    CREATE_ORDER_SUCCESS, 
-    CREATE_ORDER_FAIL, 
-    CLEAR_ERRORS, 
+import {
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_SUCCESS,
+    CREATE_ORDER_FAIL,
+    CLEAR_ERRORS,
     MY_ORDERS_REQUEST,
     MY_ORDERS_SUCCESS,
     MY_ORDERS_FAIL,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
-    ORDER_DETAILS_FAIL
+    ORDER_DETAILS_FAIL,
+    ADMIN_ORDERS_REQUEST,
+    ADMIN_ORDERS_SUCCESS,
+    ADMIN_ORDERS_FAIL
+
 } from "../constants/orderConstants"
 
-export const createOrder = (order) => async (dispatch)=>{
-    try{
-        dispatch({type: CREATE_ORDER_REQUEST})
+export const getAdminOrders = () => async (dispatch) => {
+    try {
 
-        const config={
-            headers:{
-                "Content-Type":"application/json"
+        dispatch({ type: ADMIN_ORDERS_REQUEST });
+
+        const { data } = await axios.get('/api/admin/orders')
+
+        dispatch({
+            type: ADMIN_ORDERS_SUCCESS,
+            payload: data.orders
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ADMIN_ORDERS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+
+export const createOrder = (order) => async (dispatch) => {
+    try {
+        dispatch({ type: CREATE_ORDER_REQUEST })
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
             }
         }
 
-        const {data} = await axios.post("/api/order/new", order, config)
+        const { data } = await axios.post("/api/order/new", order, config)
 
         dispatch({
             type: CREATE_ORDER_SUCCESS,
             payload: data
         })
-    } catch(error){
+    } catch (error) {
         dispatch({
             type: CREATE_ORDER_FAIL,
             payload: error.response.data.message
@@ -80,7 +105,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
 }
 
 //Clear Errors
-export const clearErrors = ()=> async (dispatch) =>{
+export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS
     })

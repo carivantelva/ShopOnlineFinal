@@ -1,7 +1,7 @@
 {
-  "name": "vetyshop",
-  "version": "1.0.0",
-  "description": "Tienda virtual de productos para mascotas",
+  "name": "shoponline",
+  "version": "4.0.0",
+  "description": "Tienda virtual de Envaces Plasticos",
   "main": "server.js",
   "scripts": {
     "start": "node back/server.js",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OZZYTA/VetyShop.git"
+    "url": "https://github.com/carivantelva/TiendaVirtualV3.git"
   },
-  "author": "Natali Velasquez",
+  "author": "Grupo shopOnline",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/OZZYTA/VetyShop/issues"

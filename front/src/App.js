@@ -8,7 +8,7 @@ import { ProductDetails } from './components/products/ProductDetails';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/admin/Dashboard';
 import ProductsList from './components/admin/ProductsList';
-import NewProduct from './components/admin/NewProduct';
+import NewProduct from './components/admin/newProduct';
 import Cart from './components/cart/Cart';
 import { Login } from './components/user/Login';
 import { Register } from './components/user/Register';
@@ -27,6 +27,7 @@ import { Payment } from './components/cart/Payment';
 import { Success } from './components/cart/Success'
 import { ListOrder } from './components/order/ListOrder';
 import { OrderDetails } from './components/order/OrderDetails';
+import { ListOrders } from './components/admin/ListOrder';
 
 function App() {
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
             <Route path="/password/update" element={<UpdatePassword />} />
             <Route path="/password/forgot" element={<ForgotPassword />} />
             <Route path="/resetPassword/:token" element={<NewPassword />} />
+            <Route path="/ordersList" element={<ListOrders />} />
 
 
             {/*Ruta protegida*/}
@@ -78,8 +80,7 @@ function App() {
               element={<ProtectedRoute><ListOrder /></ProtectedRoute>} />
 
             <Route path="/order/:id"
-              element={<ProtectedRoute><OrderDetails /></ProtectedRoute>} />
-
+              element={<ProtectedRoute><OrderDetails /></ProtectedRoute>} />           
 
 
           </Routes>
